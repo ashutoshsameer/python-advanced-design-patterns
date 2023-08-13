@@ -1,15 +1,18 @@
 import sys
 
-
+from abc import ABC, abstractmethod
 
 class AbstractClass(ABC):
 #This class inherit from Abstract Base Class to allow the use of the @abstractmethod decorator
     
 	def template_method(self):
-		"""Ths is the template method that contains a collection of 
+		"""This is the template method that contains a collection of 
 		methods to stay the same, to be overriden, and to be overriden optionally.
 		"""
-
+		self.__always_do_this()
+		self.do_step_1()
+		self.do_step_2()
+		self.do_this_or()
 		
 
 	def __always_do_this(self):
@@ -33,7 +36,11 @@ class AbstractClass(ABC):
 
 class ConcreteClassA(AbstractClass):
 #This class inherits from the Abstract class featuring the template method. 
-
+	def do_step_1(self):
+		print("Doing step 1 for ConcreteClassA ...")
+	
+	def do_step_2(self):
+		print("Doing step 2 for ConcreteClassA ...")
 		
 
 class ConcreteClassB(AbstractClass):
@@ -46,12 +53,13 @@ class ConcreteClassB(AbstractClass):
 		print('Doing step 2 for ConcreteClassB ...')
 
 	def do_this_or(self):
-		
+		print("Doing my own business ...")
 
 def main():
 	print('==ConcreteClassA==')
 	
-	
+	a = ConcreteClassA()
+	a.template_method()
 
 	print('==ConcreteClassB==')
 
